@@ -41,7 +41,8 @@
 		"scope": "julia",
 		"prefix": "#BOILERPLATE",
 		"body": [
-			"module Codyssi20${1:24}Day${2:1}",
+			"module Codyssi20${1:25}Day${2:1}",
+			"# https://www.codyssi.com/view_problem_${3:5}",
 			"",
 			"function load(file::AbstractString)",
 			"\t${0}",
@@ -61,7 +62,7 @@
 			"",
 			"if isinteractive()",
 			"\tusing REPL",
-			"\tREPL.activate(Codyssi20${1:24}Day${2:1})",
+			"\tREPL.activate(Codyssi20${1:25}Day${2:1})",
 			"elseif !isempty(ARGS)",
 			"\tinput = load(first(ARGS))",
 			"\tprintln(partone(input))",
