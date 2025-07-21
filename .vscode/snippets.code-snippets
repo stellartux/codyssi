@@ -4,7 +4,7 @@
 		"prefix": "#BOILERPLATE",
 		"body": [
 			"#!/usr/bin/env swipl",
-			"% https://www.codyssi.com/view_problem_${2:5}",
+			"% https://www.codyssi.com/view_problem_${3:5}",
 			"",
 			":- module(codyssi20${1:25}day${2:1}, []).",
 			":- module(codyssi20${1:25}day${2:1}).",
