@@ -97,13 +97,6 @@ part_one(whirlpool(Grid0, Instructions, _), Result) :-
 cycle([I | Is0], Is, G, G) :- append(Is0, [I], Is).
 act([I | Is], Is, G0, G) :- call(I, G0, G).
 
-foldl2(Goal, List, A0, A, B0, B) :- foldl2_(List, Goal, A0, A, B0, B).
-
-foldl2_([], _, A, A, B, B).
-foldl2_([X | Xs], Goal, A0, A, B0, B) :-
-    call(Goal, X, A0, A1, B0, B1),
-    foldl2_(Xs, Goal, A1, A, B1, B).
-
 process(As0, As, Is0, Is, G0, G) :-
     (   As0 = As, Is0 = Is, G0 = G
     ;   As0 = [A | As1],
