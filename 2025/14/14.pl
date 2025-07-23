@@ -16,12 +16,20 @@ line(item(ItemCode, Quality, Cost, UniqueMaterials)) -->
 
 item_code(ItemCode) --> nonblanks(Codes), { Codes \== [], atom_codes(ItemCode, Codes) }.
 
-part_one(Items0, Result) :-
-    sort(3, >=, Items0, Items1),
-    sort(2, >=, Items1, Items),
-    length(Top, 5),
-    prefix(Top, Items),
-    aggregate_all(sum(UniqueMaterials), member(item(_, _, _, UniqueMaterials), Top), Result).
+prefix_n(Prefix, N, List) :- length(Prefix, N), prefix(Prefix, List).
+
+sum_items(Items, Totals) :-
+    aggregate_all(total(sum(Quality), sum(Cost), sum(UniqueMaterials)), (
+        member(item(_, Quality, Cost, UniqueMaterials), Items)
+    ), Totals).
+
+part_one --> part_one(5).
+part_one(N, Items, Result) :-
+    sort(3, >=, Items, ItemsSortedByCost),
+    sort(2, >=, ItemsSortedByCost, ItemsSortedByQualityThenCost),
+    prefix_n(Top, N, ItemsSortedByQualityThenCost),
+    sum_items(Top, total(_, _, Result)).
+
 
 optimal_combination(MaxCost, Items, Result) :-
     sort(3, =<, Items, SortedByCost),
